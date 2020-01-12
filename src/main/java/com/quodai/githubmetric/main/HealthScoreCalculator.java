@@ -1,7 +1,6 @@
 package com.quodai.githubmetric.main;
 
 import java.io.IOException;
-import java.util.List;
 
 import com.quodai.githubmetric.service.FileUnzipService;
 import com.quodai.githubmetric.service.GithubEventDownloadingService;
@@ -17,7 +16,6 @@ public class HealthScoreCalculator {
 		System.out.println(requestUrl);
 		requestUrl = "https://data.gharchive.org/2015-01-01-15.json.gz";
 		String filePath = GithubEventDownloadingService.newInstance().downloadFileAndReturnFilePath(requestUrl);
-		List<String> descendantFilesAfterExtracting = FileUnzipService.newInstance().unzipFileAndReturnDescendants(filePath);
-		descendantFilesAfterExtracting.forEach(file -> System.out.println("----- " + file));
+		FileUnzipService.newInstance().unzipToJsonFile(filePath);
 	}
 }

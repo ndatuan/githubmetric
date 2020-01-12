@@ -26,7 +26,7 @@ public class GithubEventDownloadingService {
 
 	public String downloadFileAndReturnFilePath(String url) throws IOException {
 		HttpGet request = new HttpGet(url);
-		String filePath = Constants.RESOURCES_FOLDER + UUID.randomUUID().toString() + ".zip";
+		String filePath = Constants.RESOURCES_FOLDER + UUID.randomUUID().toString() + ".gz";
 		File file = FileUtils.getFile(filePath);
 		try (CloseableHttpClient httpClient = HttpClients.createDefault();
 				CloseableHttpResponse response = httpClient.execute(request);
