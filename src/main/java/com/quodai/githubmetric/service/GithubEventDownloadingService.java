@@ -16,6 +16,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
+import com.quodai.githubmetric.constant.Constants;
+
 public class GithubEventDownloadingService {
 
 	public static GithubEventDownloadingService newInstance() {
@@ -24,7 +26,7 @@ public class GithubEventDownloadingService {
 
 	public String downloadFileAndReturnFilePath(String url) throws IOException {
 		HttpGet request = new HttpGet(url);
-		String filePath = "src/main/resources/" + UUID.randomUUID().toString() + ".zip";
+		String filePath = Constants.RESOURCES_FOLDER + UUID.randomUUID().toString() + ".zip";
 		File file = FileUtils.getFile(filePath);
 		try (CloseableHttpClient httpClient = HttpClients.createDefault();
 				CloseableHttpResponse response = httpClient.execute(request);
