@@ -1,9 +1,14 @@
 package com.quodai.githubmetric.service;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.zip.ZipInputStream;
+import java.io.OutputStream;
+import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -17,19 +22,26 @@ public class GithubEventDownloadingService {
 		return new GithubEventDownloadingService();
 	}
 
-	public InputStream getGitHubEvent(String url) throws IOException {
+	public String downloadFileAndReturnFilePath(String url) throws IOException {
 		HttpGet request = new HttpGet(url);
+		String filePath = "src/main/resources/" + UUID.randomUUID().toString() + ".zip";
+		File file = FileUtils.getFile(filePath);
 		try (CloseableHttpClient httpClient = HttpClients.createDefault();
-			CloseableHttpResponse response = httpClient.execute(request)) {
+				CloseableHttpResponse response = httpClient.execute(request);
+				OutputStream outputStream = new FileOutputStream(file)) {
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-
-			}
-			HttpEntity entity = response.getEntity();
-			if (entity != null) {
-				return new ZipInputStream(entity.getContent());
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					byte[] buffer = new byte[8 * 1024];
+					int bytesRead;
+					InputStream content = entity.getContent();
+					while ((bytesRead = content.read(buffer)) != -1) {
+						outputStream.write(buffer, 0, bytesRead);
+					}
+					return filePath;
+				}
 			}
 		}
-		return null;
+		return StringUtils.EMPTY;
 	}
-
 }

@@ -1,10 +1,12 @@
 package com.quodai.githubmetric.main;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.Optional;
+import java.util.zip.ZipInputStream;
 
 import com.quodai.githubmetric.service.GithubEventDownloadingService;
 import com.quodai.githubmetric.service.GithubEventUrlBuildingService;
+import com.quodai.githubmetric.service.StreamUnzipService;
 import com.quodai.githubmetric.util.DateUtils;
 
 public class HealthScoreCalculator {
@@ -14,8 +16,7 @@ public class HealthScoreCalculator {
 		String endDateInput = "2019-01-02T00:00:00Z";
 		String requestUrl = GithubEventUrlBuildingService.newInstance().buildUrl(DateUtils.convertIso8601Format(startDateInput), DateUtils.convertIso8601Format(endDateInput));
 		System.out.println(requestUrl);
-		InputStream inputStream = GithubEventDownloadingService.newInstance().getGitHubEvent(requestUrl);
-		
+		requestUrl = "https://data.gharchive.org/2015-01-01-15.json.gz";
+		String filePath = GithubEventDownloadingService.newInstance().downloadFileAndReturnFilePath(requestUrl);
 	}
-	
 }
