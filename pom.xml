@@ -3,10 +3,6 @@
   <groupId>com.quodai.gitmetric</groupId>
   <artifactId>GithubMetricHealthscore</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <configuration>
-    <source>1.8</source>
-    <target>1.8</target>
-  </configuration>
   <name>com.quodai.gitmetric.GithubMetricHealthscore</name>
   <description>Measure github metric</description>
   
@@ -43,5 +39,13 @@
 		    <version>2.6</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.10.1</version>
+		</dependency>
+
+				
 	</dependencies>
 </project>
