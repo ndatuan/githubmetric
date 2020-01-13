@@ -1,4 +1,4 @@
-package com.quodai.githubmetric.model;
+package com.quodai.githubmetric.github.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -7,11 +7,11 @@ public class GithubEvent {
 	
 	private String id;
 	private String type;
-	private Actor actor;
-	private Repo repo;
-	private Payload payload;
+	private GithubActor actor;
+	private GithubRepo repo;
+	private GithubPayload payload;
 	private String created_at;
-	private Organisation org;
+	private GithubOrganisation org;
 	
 	public String getId() {
 		return id;
@@ -25,22 +25,22 @@ public class GithubEvent {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public Actor getActor() {
+	public GithubActor getActor() {
 		return actor;
 	}
-	public void setActor(Actor actor) {
+	public void setActor(GithubActor actor) {
 		this.actor = actor;
 	}
-	public Repo getRepo() {
+	public GithubRepo getRepo() {
 		return repo;
 	}
-	public void setRepo(Repo repo) {
+	public void setRepo(GithubRepo repo) {
 		this.repo = repo;
 	}
-	public Payload getPayload() {
+	public GithubPayload getPayload() {
 		return payload;
 	}
-	public void setPayload(Payload payload) {
+	public void setPayload(GithubPayload payload) {
 		this.payload = payload;
 	}
 	public String getCreated_at() {
@@ -49,10 +49,10 @@ public class GithubEvent {
 	public void setCreated_at(String created_at) {
 		this.created_at = created_at;
 	}
-	public Organisation getOrg() {
+	public GithubOrganisation getOrg() {
 		return org;
 	}
-	public void setOrg(Organisation org) {
+	public void setOrg(GithubOrganisation org) {
 		this.org = org;
 	}
 	

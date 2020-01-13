@@ -1,22 +1,22 @@
-package com.quodai.githubmetric.model;
+package com.quodai.githubmetric.shared.model;
 
 public class GitRepoData {
 	
-	String orgId;
+	String repoId;
 	int noOfCommit;
 	
 	public GitRepoData() {}
 	
 	public GitRepoData(String orgId, int noOfCommit) {
-		this.orgId = orgId;
+		this.repoId = orgId;
 		this.noOfCommit = noOfCommit;
 	}
 	
-	public String getOrgId() {
-		return orgId;
+	public String getRepoId() {
+		return repoId;
 	}
-	public void setOrgId(String orgId) {
-		this.orgId = orgId;
+	public void setRepoId(String repoId) {
+		this.repoId = repoId;
 	}
 	public int getNoOfCommit() {
 		return noOfCommit;

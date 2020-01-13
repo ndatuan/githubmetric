@@ -1,9 +1,9 @@
-package com.quodai.githubmetric.model;
+package com.quodai.githubmetric.github.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Payload {
+public class GithubPayload {
 	
 	private int distinct_size;
 

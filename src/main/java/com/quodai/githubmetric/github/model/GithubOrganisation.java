@@ -1,10 +1,7 @@
-package com.quodai.githubmetric.model;
+package com.quodai.githubmetric.github.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+public class GithubOrganisation {
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Actor {
-	
 	private String id;
 	private String login;
 	private String gravatar_id;

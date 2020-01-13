@@ -10,8 +10,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.quodai.githubmetric.constant.GitEventType;
-import com.quodai.githubmetric.model.GitRepoData;
-import com.quodai.githubmetric.model.GithubEvent;
+import com.quodai.githubmetric.github.model.GithubEvent;
+import com.quodai.githubmetric.shared.model.GitRepoData;
 
 public class HealthScoreCalculationService {
 

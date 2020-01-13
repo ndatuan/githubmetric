@@ -1,6 +1,6 @@
-package com.quodai.githubmetric.model;
+package com.quodai.githubmetric.github.model;
 
-public class Repo {
+public class GithubRepo {
 	
 	private String id;
 	private String name;
