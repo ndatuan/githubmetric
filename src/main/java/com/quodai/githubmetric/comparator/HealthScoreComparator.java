@@ -2,12 +2,14 @@ package com.quodai.githubmetric.comparator;
 
 import java.util.Comparator;
 
-public class HealthScoreComparator implements Comparator<Integer>{
+import com.quodai.githubmetric.shared.model.HealthScoreMark;
+
+public class HealthScoreComparator implements Comparator<HealthScoreMark>{
 
 	@Override
-	public int compare(Integer o1, Integer o2) {
-		// TODO Auto-generated method stub
-		return o2 - o1;
+	public int compare(HealthScoreMark arg0, HealthScoreMark arg1) {
+		return arg1.getHealthScore().compareTo(arg0.getHealthScore());
 	}
+
 
 }
