@@ -7,7 +7,7 @@ public class GitRepositoryOverview {
 	String repoId;
 	String repoName;
 	int noOfCommit;
-	BigDecimal healthScore;
+	BigDecimal commitHealthScore;
 
 	public GitRepositoryOverview() {
 	}
@@ -15,7 +15,7 @@ public class GitRepositoryOverview {
 	public GitRepositoryOverview(String orgId, String repoName) {
 		this.repoId = orgId;
 		this.repoName = repoName;
-		this.healthScore = BigDecimal.ZERO;
+		this.commitHealthScore = BigDecimal.ZERO;
 		this.noOfCommit = 0;
 	}
 
@@ -43,12 +43,12 @@ public class GitRepositoryOverview {
 		this.repoName = repoName;
 	}
 
-	public BigDecimal getHealthScore() {
-		return healthScore;
+	public BigDecimal getCommitHealthScore() {
+		return commitHealthScore;
 	}
 
-	public void setHealthScore(BigDecimal healthScore) {
-		this.healthScore = healthScore;
+	public void setCommitHealthScore(BigDecimal healthScore) {
+		this.commitHealthScore = healthScore;
 	}
 
 }
