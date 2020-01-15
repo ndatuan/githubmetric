@@ -16,14 +16,15 @@ import com.quodai.githubmetric.shared.model.GithubRawData;
 public class HealthScoreCalculator {
 	
 	public static void main(String[] args) throws IOException {
-		String requestUrl = "https://data.gharchive.org/2019-01-01-15.json.gz";
-		String filePath = GithubEventDownloadingService.newInstance().downloadFileAndReturnFilePath(requestUrl);
-		System.out.println("Finish download");
+		String requestUrl = args[0];
+		System.out.println("----------- request " + requestUrl);
+		String resourceFolder = args[1];
+		System.out.println("----------- resourceFolder " + resourceFolder);
+		String filePath = GithubEventDownloadingService.newInstance().downloadFileAndReturnFilePath(requestUrl, resourceFolder);
+		System.out.println("----------- filePath " + filePath);
 		String jsonFilePath = FileUnzipService.newInstance().unzipToJsonFile(filePath);
-		System.out.println("Finish unzip");
 		GithubRawData rawData = GithubDataHandlingService.newInstance().handleData(jsonFilePath);
-		System.out.println("Handle data");
 		TreeMap<BigDecimal, List<GitRepositoryOverview>> results = HealthScoreCalculationService.newInstance().calculate(rawData);
-		CsvResultPrintingService.newInstance().printResult(results);
+		CsvResultPrintingService.newInstance().printResult(results, resourceFolder);
 	}
 }

@@ -16,17 +16,15 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import com.quodai.githubmetric.constant.Constants;
-
 public class GithubEventDownloadingService {
 
 	public static GithubEventDownloadingService newInstance() {
 		return new GithubEventDownloadingService();
 	}
 
-	public String downloadFileAndReturnFilePath(String url) throws IOException {
+	public String downloadFileAndReturnFilePath(String url, String resourceFolder) throws IOException {
 		HttpGet request = new HttpGet(url);
-		String filePath = Constants.RESOURCES_FOLDER + UUID.randomUUID().toString() + ".gz";
+		String filePath = resourceFolder + UUID.randomUUID().toString() + ".gz";
 		File file = FileUtils.getFile(filePath);
 		try (CloseableHttpClient httpClient = HttpClients.createDefault();
 				CloseableHttpResponse response = httpClient.execute(request);

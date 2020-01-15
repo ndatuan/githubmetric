@@ -12,7 +12,6 @@ import java.util.UUID;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
-import com.quodai.githubmetric.constant.Constants;
 import com.quodai.githubmetric.shared.model.GitRepositoryOverview;
 
 public class CsvResultPrintingService {
@@ -24,8 +23,8 @@ public class CsvResultPrintingService {
 		return new CsvResultPrintingService();
 	}
 	
-	public void printResult(TreeMap<BigDecimal, List<GitRepositoryOverview>> results) throws IOException {
-		try(FileWriter out = new FileWriter(Constants.RESOURCES_FOLDER + "repo_result_" + UUID.randomUUID() + ".csv");
+	public void printResult(TreeMap<BigDecimal, List<GitRepositoryOverview>> results, String resourceFolder) throws IOException {
+		try(FileWriter out = new FileWriter(resourceFolder + "repo_result_" + UUID.randomUUID() + ".csv");
 				CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader(HEADERS))) {
 			List<GitRepositoryOverview> printedRepos = buildPrintedRepos(results);
 			printRepos(printer, printedRepos);
