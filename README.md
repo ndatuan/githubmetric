@@ -1,6 +1,8 @@
 "# githubmetric" 
 # Install:
-Run mvn compile, then run mvn exec:java -Dexec.mainClass="com.quodai.githubmetric.main.HealthScoreCalculator" -Dexec.args="arg0 arg1" with arg0 is request url, arg1 is folder to store file csv file as well as downloaded file. Example: mvn exec:java -Dexec.mainClass="com.quodai.githubmetric.main.HealthScoreCalculator" -Dexec.args="https://data.gharchive.org/2019-01-01-15.json.gz  'D:\New folder\'"
+	Run mvn compile
+
+	Run mvn exec:java -Dexec.mainClass="com.quodai.githubmetric.main.HealthScoreCalculator" -Dexec.args="arg0 arg1" with arg0 is request url, arg1 is folder to store file csv file as well as downloaded file. Example: mvn exec:java -Dexec.mainClass="com.quodai.githubmetric.main.HealthScoreCalculator" -Dexec.args="https://data.gharchive.org/2019-01-01-15.json.gz  'D:\New folder\'"
 # Technical decision
 1. Libraries:
 
