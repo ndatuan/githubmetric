@@ -40,8 +40,6 @@ public class GithubEventDownloadingService {
 				CloseableHttpResponse response = httpClient.execute(request)) {
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 				downLoadSuccessfulUrl(filePaths, url, response);
-			} else {
-				System.out.println(response.getEntity().toString());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

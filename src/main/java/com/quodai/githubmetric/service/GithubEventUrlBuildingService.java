@@ -37,7 +37,7 @@ public class GithubEventUrlBuildingService {
 			builder.append(NumberUtils.formatNumberForDate(startDateCalendar.get(Calendar.HOUR_OF_DAY)));
 			builder.append(".json.gz");
 			url = builder.toString();
-			System.out.println(url);
+			System.out.println("Url build: " + url);
 			requestUrls.add(url);
 			startTime = startDateCalendar.getTime();
 		}

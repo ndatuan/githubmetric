@@ -44,15 +44,4 @@ public class CsvResultPrintingService {
 		}
 	}
 
-	private List<GitRepositoryOverview> buildPrintedRepos(TreeMap<BigDecimal, List<GitRepositoryOverview>> results) {
-		List<GitRepositoryOverview> printedRepositoryOverviews = new ArrayList<>();
-		for (Map.Entry<BigDecimal,List<GitRepositoryOverview>> entry : results.entrySet()) {
-			printedRepositoryOverviews.addAll(entry.getValue());
-			if(printedRepositoryOverviews.size() > NUMBER_OF_PRINTED_REPOS) {
-				break;
-			}
-		}
-		return printedRepositoryOverviews;
-	}
-	
 }
