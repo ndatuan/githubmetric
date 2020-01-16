@@ -26,7 +26,6 @@ public class GithubEventUrlBuildingService {
 		String url = StringUtils.EMPTY;
 		while(startTime.equals(endTime) || startTime.before(endTime)) {
 			Calendar startDateCalendar = org.apache.commons.lang3.time.DateUtils.toCalendar(startTime);
-			startDateCalendar.add(Calendar.HOUR_OF_DAY, 1);
 			StringBuilder builder = new StringBuilder(GH_ARCHIVE_URL);
 			builder.append(startDateCalendar.get(Calendar.YEAR));
 			builder.append(Constants.MINUS_SEPARATOR);
@@ -39,6 +38,7 @@ public class GithubEventUrlBuildingService {
 			url = builder.toString();
 			System.out.println("Url build: " + url);
 			requestUrls.add(url);
+			startDateCalendar.add(Calendar.HOUR_OF_DAY, 1);
 			startTime = startDateCalendar.getTime();
 		}
 		return requestUrls;

@@ -2,7 +2,6 @@ package com.quodai.githubmetric.main;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -16,7 +15,6 @@ import com.quodai.githubmetric.service.GithubEventUrlBuildingService;
 import com.quodai.githubmetric.service.HealthScoreCalculationService;
 import com.quodai.githubmetric.shared.model.GitRepositoryOverview;
 import com.quodai.githubmetric.shared.model.GithubRawData;
-import com.quodai.githubmetric.shared.model.HourGitRepositoryOverview;
 import com.quodai.githubmetric.sorting.algorithm.MergeSort;
 
 public class HealthScoreCalculator {

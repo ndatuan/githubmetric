@@ -2,11 +2,7 @@ package com.quodai.githubmetric.service;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.UUID;
 
 import org.apache.commons.csv.CSVFormat;
