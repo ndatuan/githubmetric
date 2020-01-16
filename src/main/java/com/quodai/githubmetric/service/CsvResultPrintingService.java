@@ -12,6 +12,7 @@ import java.util.UUID;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
+import com.quodai.githubmetric.main.HealthScoreCalculator;
 import com.quodai.githubmetric.shared.model.GitRepositoryOverview;
 
 public class CsvResultPrintingService {
@@ -23,10 +24,10 @@ public class CsvResultPrintingService {
 		return new CsvResultPrintingService();
 	}
 	
-	public void printResult(TreeMap<BigDecimal, List<GitRepositoryOverview>> results, String resourceFolder) throws IOException {
-		try(FileWriter out = new FileWriter(resourceFolder + "repo_result_" + UUID.randomUUID() + ".csv");
+	public void printResult(List<GitRepositoryOverview> results) throws IOException {
+		try(FileWriter out = new FileWriter(HealthScoreCalculator.RESOURCES_FOLDER + "repo_result_" + UUID.randomUUID() + ".csv");
 				CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader(HEADERS))) {
-			List<GitRepositoryOverview> printedRepos = buildPrintedRepos(results);
+			List<GitRepositoryOverview> printedRepos = results.subList(0, 1000);
 			printRepos(printer, printedRepos);
 		}
 	}

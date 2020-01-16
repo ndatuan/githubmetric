@@ -39,7 +39,6 @@ public class GithubEventUrlBuildingService {
 			url = builder.toString();
 			System.out.println(url);
 			requestUrls.add(url);
-			startDateCalendar.add(Calendar.HOUR_OF_DAY, 1);
 			startTime = startDateCalendar.getTime();
 		}
 		return requestUrls;

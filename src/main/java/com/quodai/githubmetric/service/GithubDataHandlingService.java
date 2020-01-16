@@ -5,8 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,12 +19,13 @@ import com.quodai.githubmetric.constant.GitEventType;
 import com.quodai.githubmetric.github.model.GithubEvent;
 import com.quodai.githubmetric.shared.model.GitRepositoryOverview;
 import com.quodai.githubmetric.shared.model.GithubRawData;
+import com.quodai.githubmetric.shared.model.HourGitRepositoryOverview;
 
 public class GithubDataHandlingService {
 	
 	private Map<String, GitRepositoryOverview> gitRepos;
 	private Set<String> repoIds;
-	private GitRepositoryOverview maxRepoData;
+	private HourGitRepositoryOverview hourRepoOverview;
 	
 	public static GithubDataHandlingService newInstance() {
 		return new GithubDataHandlingService();
@@ -31,7 +34,7 @@ public class GithubDataHandlingService {
 	private GithubDataHandlingService() {
 		gitRepos = new HashMap<>();
 		repoIds = new HashSet<>();
-		maxRepoData = new GitRepositoryOverview();
+		hourRepoOverview = new HourGitRepositoryOverview();
 	}
 	
 
@@ -49,10 +52,17 @@ public class GithubDataHandlingService {
 		return rawData;
 	}
 
+	public void synchronizeMaxRepoDataInHour(List<GithubRawData> rawDatas) {
+		// TODO Auto-generated method stub
+		List<HourGitRepositoryOverview> hourRepoOverviews = rawDatas.stream().map(GithubRawData::getHourRepoOverview).collect(Collectors.toList());
+		int maxCommit = hourRepoOverviews.stream().map(HourGitRepositoryOverview::getMaxCommit).mapToInt(Integer::intValue).max().orElse(0);
+		hourRepoOverviews.forEach(hourRepoOverview -> hourRepoOverview.setMaxCommit(maxCommit));
+	}
+	
 	private GithubRawData buildRawData() {
 		GithubRawData rawData = new GithubRawData();
 		rawData.setGitRepos(gitRepos);
-		rawData.setMaxRepoData(maxRepoData);
+		rawData.setHourRepoOverview(hourRepoOverview);
 		return rawData;
 	}
 
@@ -90,9 +100,9 @@ public class GithubDataHandlingService {
 		return repositoryOverview;
 	}
 
-	private void checkMaxCommit(int gitRepoData) {
-		if(gitRepoData > maxRepoData.getNoOfCommit()) {
-			maxRepoData.setNoOfCommit(gitRepoData);
+	private void checkMaxCommit(int currentCommitNumber) {
+		if(currentCommitNumber > hourRepoOverview.getMaxCommit()) {
+			hourRepoOverview.setMaxCommit(currentCommitNumber);
 		}
 	}
 }
