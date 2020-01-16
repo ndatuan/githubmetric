@@ -2,7 +2,7 @@
 # Install:
 	Run mvn compile
 
-	Run mvn exec:java -Dexec.mainClass="com.quodai.githubmetric.main.HealthScoreCalculator" -Dexec.args="arg0 arg1" with arg0 is start time to download, arg1 is end time to download. Example: mvn exec:java -Dexec.mainClass="com.quodai.githubmetric.main.HealthScoreCalculator" -Dexec.args="2019-01-01T00:00:00Z 2019-01-01T05:00:00Z"
+	Run mvn exec:java -Dexec.mainClass="com.quodai.githubmetric.main.HealthScoreCalculator" -Dexec.args="arg0 arg1" with arg0 is start time to download, arg1 is end time to download. Example: mvn exec:java -Dexec.mainClass="com.quodai.githubmetric.main.HealthScoreCalculator" -Dexec.args="2019-01-01T00:00:00Z 2019-01-01T05:00:00Z". After exec, you can go to src/main/resource to see the results
 # Technical decision
 1. Libraries:
 
