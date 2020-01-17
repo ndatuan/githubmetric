@@ -33,22 +33,22 @@ public class HealthScoreCalculator {
 		System.out.println("Finish downloading url");
 		List<String> jsonFilePaths = FileUnzipService.newInstance().unzipToJsonFile(archiveFilePaths);
 		System.out.println("Finish extract url");
-		List<GithubRawData> rawDatas = extractRawDataFromJsonFilePaths(jsonFilePaths);
+		List<GithubRawData> rawDatasPerHour = extractRawDataFromJsonFilePaths(jsonFilePaths);
 		System.out.println("Finish handling raw data from json file");
-		GithubRawData githubRawData = GitHubDataSynchronizingService.newInstance().synchronize(rawDatas);
+		GithubRawData githubRawData = GitHubDataSynchronizingService.newInstance().synchronize(rawDatasPerHour);
 		System.out.println("Finish synchronize raw data from hours");
-		TreeMap<BigDecimal, List<GitRepositoryOverview>> results = HealthScoreCalculationService.newInstance().calculate(githubRawData);
+		TreeMap<BigDecimal, List<GitRepositoryOverview>> sameHealthScoreToGitRepos = HealthScoreCalculationService.newInstance().calculate(githubRawData);
 		System.out.println("Finish sorting");
-		CsvResultPrintingService.newInstance().printResult(results);
+		CsvResultPrintingService.newInstance().printResult(sameHealthScoreToGitRepos);
 		System.out.println("Finish printing results");
 	}
 
-	private static List<GithubRawData> extractRawDataFromJsonFilePaths(List<String> jsonFilePaths) {
+	private static List<GithubRawData> extractRawDataFromJsonFilePaths(List<String> jsonFilePathsPerHour) {
 		CopyOnWriteArrayList<GithubRawData> rawDatas = new CopyOnWriteArrayList<>();
-		jsonFilePaths.parallelStream().forEach(jsonFilePath -> {
+		jsonFilePathsPerHour.parallelStream().forEach(jsonFilePath -> {
 			try {
-				GithubRawData rawData = GithubDataHandlingService.newInstance().handleData(jsonFilePath);
-				rawDatas.add(rawData);
+				GithubRawData rawHourData = GithubDataHandlingService.newInstance().handleData(jsonFilePath);
+				rawDatas.add(rawHourData);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
