@@ -1,6 +1,6 @@
 package com.quodai.githubmetric.shared.model;
 
-public class HourGitRepositoryOverview {
+public class GitRepoMaxData {
 
 	int maxCommit;
 

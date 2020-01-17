@@ -6,11 +6,11 @@ import java.util.Map;
 public class GithubRawData {
 
 	private Map<String, GitRepositoryOverview> gitRepos;
-	private HourGitRepositoryOverview hourRepoOverview;
+	private GitRepoMaxData gitRepoMaxData;
 	
 	public GithubRawData() {
 		gitRepos = new HashMap<String, GitRepositoryOverview>();
-		hourRepoOverview = new HourGitRepositoryOverview();
+		gitRepoMaxData = new GitRepoMaxData();
 	}
 
 	public Map<String, GitRepositoryOverview> getGitRepos() {
@@ -21,12 +21,12 @@ public class GithubRawData {
 		this.gitRepos = gitRepos;
 	}
 
-	public HourGitRepositoryOverview getHourRepoOverview() {
-		return hourRepoOverview;
+	public GitRepoMaxData getGitRepoMaxData() {
+		return gitRepoMaxData;
 	}
 
-	public void setHourRepoOverview(HourGitRepositoryOverview hourRepoOverview) {
-		this.hourRepoOverview = hourRepoOverview;
+	public void setGitRepoMaxData(GitRepoMaxData gitRepoMaxData) {
+		this.gitRepoMaxData = gitRepoMaxData;
 	}
 
 }

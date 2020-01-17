@@ -13,7 +13,7 @@ import java.util.TreeMap;
 import com.quodai.githubmetric.comparator.HealthScoreComparator;
 import com.quodai.githubmetric.shared.model.GitRepositoryOverview;
 import com.quodai.githubmetric.shared.model.GithubRawData;
-import com.quodai.githubmetric.shared.model.HourGitRepositoryOverview;
+import com.quodai.githubmetric.shared.model.GitRepoMaxData;
 
 public class HealthScoreCalculationService {
 
@@ -29,7 +29,7 @@ public class HealthScoreCalculationService {
 	
 	public TreeMap<BigDecimal, List<GitRepositoryOverview>> calculate(GithubRawData rawData) throws IOException {
 		Map<String, GitRepositoryOverview> gitRepos = rawData.getGitRepos();
-		HourGitRepositoryOverview hourRepoOverview = rawData.getHourRepoOverview();
+		GitRepoMaxData hourRepoOverview = rawData.getGitRepoMaxData();
 		TreeMap<BigDecimal, List<GitRepositoryOverview>> sortedGitsRepoByHealthScore = new TreeMap<BigDecimal, List<GitRepositoryOverview>>(new HealthScoreComparator());
 		gitRepos.entrySet().forEach(entry -> {
 			GitRepositoryOverview repoOverview = calculateHealthScoreForRepo(hourRepoOverview, entry);
@@ -54,7 +54,7 @@ public class HealthScoreCalculationService {
 		}
 	}
 
-	private GitRepositoryOverview calculateHealthScoreForRepo(HourGitRepositoryOverview hourRepoOverview, Entry<String, GitRepositoryOverview> entry) {
+	private GitRepositoryOverview calculateHealthScoreForRepo(GitRepoMaxData hourRepoOverview, Entry<String, GitRepositoryOverview> entry) {
 		GitRepositoryOverview repoOverview = entry.getValue();
 		BigDecimal commitHealthScore = calculateHealthScoreByCommits(repoOverview, hourRepoOverview.getMaxCommit());
 		repoOverview.setCommitHealthScore(commitHealthScore);
