@@ -28,7 +28,7 @@ public class HealthScoreCalculationService {
 	}
 	
 	public TreeMap<BigDecimal, List<GitRepositoryOverview>> calculate(GithubRawData rawData) throws IOException {
-		Map<String, GitRepositoryOverview> gitRepos = rawData.getGitRepos();
+		Map<String, GitRepositoryOverview> gitRepos = rawData.getRepoIdToGitRepos();
 		GitRepoMaxData hourRepoOverview = rawData.getGitRepoMaxData();
 		TreeMap<BigDecimal, List<GitRepositoryOverview>> sortedGitsRepoByHealthScore = new TreeMap<BigDecimal, List<GitRepositoryOverview>>(new HealthScoreComparator());
 		gitRepos.entrySet().forEach(entry -> {

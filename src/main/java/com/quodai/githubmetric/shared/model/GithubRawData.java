@@ -5,20 +5,20 @@ import java.util.Map;
 
 public class GithubRawData {
 
-	private Map<String, GitRepositoryOverview> gitRepos;
+	private Map<String, GitRepositoryOverview> repoIdToGitRepos;
 	private GitRepoMaxData gitRepoMaxData;
 	
 	public GithubRawData() {
-		gitRepos = new HashMap<String, GitRepositoryOverview>();
+		repoIdToGitRepos = new HashMap<String, GitRepositoryOverview>();
 		gitRepoMaxData = new GitRepoMaxData();
 	}
 
-	public Map<String, GitRepositoryOverview> getGitRepos() {
-		return gitRepos;
+	public Map<String, GitRepositoryOverview> getRepoIdToGitRepos() {
+		return repoIdToGitRepos;
 	}
 
 	public void setGitRepos(Map<String, GitRepositoryOverview> gitRepos) {
-		this.gitRepos = gitRepos;
+		this.repoIdToGitRepos = gitRepos;
 	}
 
 	public GitRepoMaxData getGitRepoMaxData() {

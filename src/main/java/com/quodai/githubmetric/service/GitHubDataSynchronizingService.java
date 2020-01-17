@@ -25,11 +25,11 @@ public class GitHubDataSynchronizingService {
 		Map<String, GitRepositoryOverview> gitRepos = new HashMap<>();
 		int size = 0;
 		for (GithubRawData githubRawData2 : rawDatas) {
-			size += githubRawData2.getGitRepos().size();
+			size += githubRawData2.getRepoIdToGitRepos().size();
 		};
 		System.out.println("total before " + size);
 		rawDatas.forEach(rawDataPerHour -> {
-			rawDataPerHour.getGitRepos().entrySet().forEach(gitRepoEntryInHour-> {
+			rawDataPerHour.getRepoIdToGitRepos().entrySet().forEach(gitRepoEntryInHour-> {
 				String repoId = gitRepoEntryInHour.getKey();
 				GitRepositoryOverview repoOverviewInHour = gitRepoEntryInHour.getValue();
 				if(gitRepos.containsKey(repoId)) {
